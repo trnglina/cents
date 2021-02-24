@@ -12,8 +12,17 @@ if __name__ == "__main__":
     assert(until > frm)
     assert(frm > 0)
 
+    fig = plt.figure()
+    ax = fig.add_subplot()
+
     x = range(frm, until)
     y = [calc(i, [float(el.strip())
                   for el in cents_str[1:-1].split(",")]) for i in x]
+
     plt.plot(x, y, marker='o')
+
+    for xy in zip(x, y):
+        ax.annotate('%s' % xy[0], xy=xy, textcoords='data')
+
+    plt.grid()
     plt.show()
